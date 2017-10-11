@@ -36,7 +36,8 @@ function onReady(){
 
   DELETE_BTN.addEventListener('click', event =>{
     for(let i=0; i<ITEMS.length; i++){
-      let cb = ITEMS[i].getElementsByTagName('input');
+      let li = ITEMS[i].getElementsByTagName('input');
+      let cb = li[0];
       if(cb.checked){
         ITEMS[i].remove();
       }
@@ -45,6 +46,5 @@ function onReady(){
 }
 
 window.onload = function(){
-  alert("The window has loaded!");
   onReady();
 };
