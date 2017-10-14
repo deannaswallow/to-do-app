@@ -6,8 +6,8 @@ function onReady(){
     const newToDoText = document.getElementById('newToDoText');
     if(!newToDoText){return};
     toDos.push({
-      title: newToDoText.value;
-      complete: false;
+      title: newToDoText.value,
+      complete: false
     });
     //clear input for next ToDo
     newToDoText.value = '';
