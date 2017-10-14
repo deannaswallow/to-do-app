@@ -1,13 +1,15 @@
 function onReady(){
   const toDos = [];
   const addToDoForm = document.getElementById('addToDoForm');
+  const deleteBtn = document.getElementById('delete');
+  const toDoList = document.getElementById('toDoList');
 
   function createNewToDo(){
     const newToDoText = document.getElementById('newToDoText');
     if(!newToDoText){return};
     toDos.push({
-      title: newToDoText.value;
-      complete: false;
+      title: newToDoText.value,
+      complete: false
     });
     //clear input for next ToDo
     newToDoText.value = '';
@@ -16,8 +18,6 @@ function onReady(){
   }
 
   function renderTheUI(toDos){
-    const toDoList = document.getElementById('toDoList');
-
     toDoList.textContent = '';
 
     toDos.forEach(function(toDo){
@@ -30,12 +30,29 @@ function onReady(){
     });
   }
 
+  function deleteItems(toDoList){
+    const items = toDoList.getElementsByTagName('li');
+    for(let i=0; i<items.length; i++){
+      let li = items[i].getElementsByTagName('input');
+      let cb = li[0];
+      if(cb.checked){
+        items[i].remove();
+      }
+    }
+  }
+
   addToDoForm.addEventListener('submit', event => {
     //prevent page from reloading
     event.preventDefault();
     //call function that makes new ToDo
     createNewToDo();
   });
+
+  deleteBtn.addEventListener('click', event => {
+    //call function to delete items
+    deleteItems(toDoList);
+  });
+
 
   renderTheUI(toDos);
 }
